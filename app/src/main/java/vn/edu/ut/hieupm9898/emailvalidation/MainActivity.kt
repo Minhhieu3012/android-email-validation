@@ -87,5 +87,29 @@ fun EmailValidationApp() {
         } else {
             Spacer(modifier = Modifier.height(12.dp))
         }
+
+        Button(
+            onClick = {
+                messageColor = Color(0xFFe83d37) // đỏ mặc định
+                message = if (email.isBlank()) {
+                    "Email không hợp lệ"
+                } else if (!email.contains("@")) {
+                    "Email không đúng định dạng"
+                } else {
+                    messageColor = Color(0xFF2E7D32) // xanh khi hợp lệ
+                    "Bạn đã nhập email hợp lệ"
+                }
+            },
+            modifier = Modifier
+                .fillMaxWidth() // bằng chiều rộng TextField
+                .height(64.dp),
+            shape = RoundedCornerShape(50.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color(0xFF2395f3),
+                contentColor = Color.White
+            )
+        ) {
+            Text(text = "Kiểm tra", fontSize = 22.sp)
+        }
     }
 }
